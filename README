@@ -1,0 +1,38 @@
+README
+======
+Here is a simple Pager for Symfony2
+
+The aim of this pager is to give you all tools you need to build a pager, and to
+use it to define your offset/limit value to retreive your data.
+
+Features
+--------
+
+ * Twig template support
+ * Easy to customize and extend 
+ 
+Sample
+------
+
+All you need is to know how many data the pager may manage (the totalItem).
+By default the pager has 5 items inside (0 to 4), and manage 15 items in the list that you want to display.
+So you can use the container to simply use the pager : 
+    $this->get('rebolon_pager.pager');
+There is a sample in the default controller with route rebolon/pager/test
+
+You can also configure your own Pager for all your bundle, simply add this to 
+the services.xml of your bundle :
+    <service id="mybundle.pager" class="%rebolon_pager.pager.class%">
+        <call method="setContainer">
+             <argument type="service" id="service_container" />
+        </call>
+        <call method="setSuffixName">
+             <argument>pagerForWS</argument>
+        </call>
+        <call method="setItemPerPage">
+             <argument>5</argument>
+        </call>
+        <call method="setMaxPagerItem">
+             <argument>3</argument>
+        </call>
+    </service>

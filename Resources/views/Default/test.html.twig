@@ -1,0 +1,6 @@
+{% for row in data %}
+    {{ row.id }} - {{ row.title }} : {{row.desc}} <br />
+{% endfor %}
+<hr />
+
+{{ pagerZone(pager) }}
