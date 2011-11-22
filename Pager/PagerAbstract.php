@@ -44,14 +44,14 @@ abstract class PagerAbstract
     protected $_maxPagerItem = 5;
 
     /**
+     * @var int index of the first page
+     */
+    protected $_firstPage = 0;
+    
+    /**
      * @var int nb of page available
      */
     protected $_totalPage;
-
-    /**
-     * @var int index of the first page
-     */
-    protected $_firstPage;
 
     /**
      * @var int index of the last page
@@ -149,14 +149,14 @@ abstract class PagerAbstract
         $this->_totalPage = ceil($totalItem / $this->getItemPerPageParam());
         return $this;
     }
-
+    
     /**
      * 
-     * @param int $firstpage 
+     * @param int $firstPage
      */
     final protected function setFirstPage($firstPage)
     {
-        $this->_firstPage = $firstPage;
+        $this->_firstPage = !is_null($firstPage) ? (int) $firstPage : $this->_firstPage;
         return $this;
     }
 
@@ -248,26 +248,36 @@ abstract class PagerAbstract
             throw new TotalPageNotSetException;
         if (is_null($this->_firstPage))
             throw new FirstPageNotSetException;
-
+$logger = $this->_container->get('logger');
+$logger->info('$totalPage: ' . $this->_totalPage);
+$logger->info('$itemPerPage: ' . $this->_itemPerPage);
+$logger->info('$maxPagerItem: ' . $this->_maxPagerItem);
         $maxItemPerPage =
             ($this->getMaxPagerItemParam($this->_totalPage) % 2) == 0 ?
-            $this->getMaxPagerItemParam($this->_totalPage) + 1 :
-            $this->getMaxPagerItemParam($this->_totalPage);
-
+            $this->getMaxPagerItemParam($this->_totalPage) :
+            $this->getMaxPagerItemParam($this->_totalPage) + 1;
+$logger->info('$maxItemPerPage: ' . $maxItemPerPage);
         $nbItemOnSide = floor($maxItemPerPage / 2);
+$logger->info('$nbItemOnSide: ' . $nbItemOnSide);
         if ($this->_curPage <= $nbItemOnSide) {
             $startOffset = $this->_firstPage;
+$logger->info('$startOffset case 1');
         } elseif (($this->_lastPage - $this->_curPage) <= $nbItemOnSide) {
             $startOffset =
                 ($tmp = ($this->_lastPage - $maxItemPerPage + 1)) <= $this->_firstPage ?
                 $this->_firstPage : $tmp;
+$logger->info('$startOffset case 2');
         } else {
             $startOffset = $this->_curPage - $nbItemOnSide;
+$logger->info('$startOffset case 3');
         }
-        $endOffset = $startOffset + ($maxItemPerPage - 1);
-
+$logger->info('$startOffset: ' . $startOffset);
+        $endOffset = ($tmp = $startOffset + ($maxItemPerPage - 1)) > $this->_lastPage ?
+            $this->_lastPage : $tmp;
+$logger->info('$endOffset: ' . $endOffset);
         $this->_itemList = array();
         for ($i = $startOffset; $i <= $endOffset; $i++) {
+$logger->info('$i: ' . $i);
             $this->_itemList[] = (int) $i;
         }
 
@@ -291,8 +301,8 @@ abstract class PagerAbstract
                 $pagerItem[] = array('uri' => (
                     ($item != $this->getCurrentPage()) ?
                         static::getGoToPageURL($item) : null),
-                    'label' => $item,
-                    'title' => $item);
+                    'label' => $item+1,
+                    'title' => $item+1);
             }
         }
 
@@ -315,7 +325,7 @@ abstract class PagerAbstract
         if ($toTest !== $pageId) {
             return false;
         }
-        return $pageId == $this->getCurrentPage();
+        return $pageId == $this->getCurrentPage()+1;
     }
 
     /**
@@ -471,6 +481,23 @@ abstract class PagerAbstract
     public function getItemList()
     {
         return $this->_itemList;
+    }
+    
+    /**
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        $string = 
+            'nb page: ' . $this->getTotalPage() . chr(10)
+            . 'first page: ' . $this->getFirstPage() . chr(10)
+            . 'previous page: ' . $this->getPreviousPage() . chr(10)
+            . 'current page: ' . $this->getCurrentPage() . chr(10)
+            . 'next page: ' . $this->getNextPage() . chr(10)
+            . 'last page: ' . $this->getLastPage() . chr(10)
+            ;
+        return $string;
     }
 
 }

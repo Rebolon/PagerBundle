@@ -15,7 +15,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $countFake = 55;
+        $countFake = 10;
         $pager = $this->get('rebolon_pager.pager');
         $pager->init($countFake);
         

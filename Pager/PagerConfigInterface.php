@@ -30,4 +30,9 @@ interface PagerConfigInterface
     * @see \Rebolon\PagerBundle\Pager\PagerAbstract::setMaxPagerItem()
     */
    public function setMaxPagerItem($maxPagerItem);
+   
+   /**
+    * @see \Rebolon\PagerBundle\Pager\PagerAbstract::setFirstPage()
+    */
+   public function setFirstPage($firstPage);
 }

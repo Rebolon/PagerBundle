@@ -42,7 +42,7 @@ class Pager
     protected $_logger;
 
     /**
-     * @see \Rebolon\PagerBundle\Pager\PagerConfigInterface
+     * @see \Rebolon\PagerBundle\Pager\PagerConfigInterface::setContainer()
      */
     public function setContainer(\Symfony\Component\DependencyInjection\Container $container)
     {
@@ -56,29 +56,29 @@ class Pager
     }
 
     /**
-     * @see \Rebolon\PagerBundle\Pager\PagerAbstract::setSuffixName()
+     * @see \Rebolon\PagerBundle\Pager\PagerConfigInterface::setSuffixName()
      */
     public function setSuffixName($suffixName)
     {
-        $this->_suffixName = !is_null($suffixName) ? $suffixName : $defaultValue;
+        $this->_suffixName = !is_null($suffixName) ? $suffixName : $this->_suffixName;
         return $this;
     }
 
     /**
-     * @see \Rebolon\PagerBundle\Pager\PagerAbstract::setItemPerPage()
+     * @see \Rebolon\PagerBundle\Pager\PagerConfigInterface::setItemPerPage()
      */
     public function setItemPerPage($itemPerPage)
     {
-        $this->_itemPerPage = !is_null($itemPerPage) ? (int) $itemPerPage : $defaultValue;
+        $this->_itemPerPage = !is_null($itemPerPage) ? (int) $itemPerPage : $this->_itemPerPage;
         return $this;
     }
 
     /**
-     * @see \Rebolon\PagerBundle\Pager\PagerAbstract::setMaxPagerItem()
+     * @see \Rebolon\PagerBundle\Pager\PagerConfigInterface::setMaxPagerItem()
      */
     public function setMaxPagerItem($maxPagerItem)
     {
-        $this->_maxPagerItem = !is_null($maxPagerItem) ? (int) $maxPagerItem : $defaultValue;
+        $this->_maxPagerItem = !is_null($maxPagerItem) ? (int) $maxPagerItem : $this->_maxPagerItem;
         return $this;
     }
 
@@ -87,7 +87,7 @@ class Pager
      */
     protected function getCurrentPageParam()
     {
-        return $this->_request->get($this->getSuffixNameGoToPage(), 0);
+        return $this->_request->get($this->getSuffixNameGoToPage(), $this->_firstPage);
     }
 
     /**
