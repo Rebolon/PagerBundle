@@ -17,22 +17,17 @@ interface PagerConfigInterface
    public function setContainer(\Symfony\Component\DependencyInjection\Container $container);
    
    /**
-    * @see \Rebolon\PagerBundle\Pager\PagerAbstract::setSuffixName()
+    * @param int $suffixName
     */
    public function setSuffixName($suffixName);
    
    /**
-    * @see \Rebolon\PagerBundle\Pager\PagerAbstract::setItemPerPage()
+    * @param int $itemPerPage
     */
    public function setItemPerPage($itemPerPage);
 
    /**
-    * @see \Rebolon\PagerBundle\Pager\PagerAbstract::setMaxPagerItem()
+    * @param int $maxPagerItem
     */
    public function setMaxPagerItem($maxPagerItem);
-   
-   /**
-    * @see \Rebolon\PagerBundle\Pager\PagerAbstract::setFirstPage()
-    */
-   public function setFirstPage($firstPage);
 }
