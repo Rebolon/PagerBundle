@@ -41,4 +41,11 @@ interface PagerTplInterface
      * @return int
      */
     public function getCurrentPage();
+    
+    /**
+     * Return true if item index has to be displayed
+     * @param int $itemIndex
+     * @return bool
+     */
+    public function isToDisplay($itemIndex);
 }

@@ -78,6 +78,13 @@ abstract class PagerAbstract
      * (used to build pager  << < x y z > >> )
      */
     protected $_itemList;
+    
+    /**
+     * the list counter that allow template to know if an item must be displayed
+     * or not
+     * @var int 
+     */
+    protected $_displayListCounter;
 
     /**
      * 
@@ -472,6 +479,26 @@ $logger->info('$i: ' . $i);
     public function getCurrentPage()
     {
         return (int) $this->_curPage;
+    }
+    
+    /**
+     * 
+     * @see \Rebolon\PagerBundle\Pager\PagerTplInterface::isToDisplay()
+     */
+    public function isToDisplay($itemIndex)
+    {
+        $isToDisplay = false;
+        
+        if (is_null($this->_displayListCounter)) {
+            $this->_displayListCounter = $this->getItemPerPageParam();
+        }
+
+        if ($itemIndex > $this->getOffset() && $this->_displayListCounter > 0) {
+            $isToDisplay = true;
+            $this->_displayListCounter--;
+        }
+        
+        return $isToDisplay;
     }
 
     /**

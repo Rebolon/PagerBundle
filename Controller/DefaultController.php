@@ -11,11 +11,11 @@ class DefaultController extends Controller
      * 
      * Default action which do a sample usage of pager
      * 
-     * @Route("/rebolon/pager/test/", name="rebolon_pager_test")
+     * @Route("/rebolon/pager/test", name="rebolon_pager_test")
      */
     public function indexAction()
     {
-        $countFake = 10;
+        $countFake = 55;
         $pager = $this->get('rebolon_pager.pager');
         $pager->init($countFake);
         
@@ -24,6 +24,27 @@ class DefaultController extends Controller
             );
 
         return $this->render('RebolonPagerBundle:Default:test.html.twig',
+            array('data'=>$data, 'pager'=>$pager)
+            );
+    }
+    
+    /**
+     * 
+     * Default action which do a sample usage of pager
+     * 
+     * @Route("/rebolon/pager/testWithLargeList", name="rebolon_pager_testWithLargeList")
+     */
+    public function testWithLargeListAction()
+    {
+        $countFake = 55;
+        $pager = $this->get('rebolon_pager.pager');
+        $pager->init($countFake);
+        
+        $data = $this->getLargeList(
+            $countFake
+            );
+
+        return $this->render('RebolonPagerBundle:Default:testWithLargeList.html.twig',
             array('data'=>$data, 'pager'=>$pager)
             );
     }
@@ -41,6 +62,22 @@ class DefaultController extends Controller
 		for( $i=0 ; $i<$nbWished ; $i++ )
 			if( $i >= $offset && $npp-- > 0 )
 				$aList[] = static::getStdClassObject($i) ;
+			
+		return $aList ;
+	}
+    
+    /**
+     * Build a large list fixtures
+     * @param int nbWished
+     * @param int offset
+     * @param int npp
+     * @return array
+     */
+	private function getLargeList($nbWished)
+	{
+		$aList = array() ;
+		for( $i=0 ; $i<$nbWished ; $i++ )
+			$aList[] = static::getStdClassObject($i) ;
 			
 		return $aList ;
 	}

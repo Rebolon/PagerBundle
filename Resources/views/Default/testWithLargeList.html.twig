@@ -1,5 +1,7 @@
 {% for row in data %}
+    {% if pager.isToDisplay(loop.index) %}
     {{ row.id }} - {{ row.title }} : {{row.desc}} <br />
+    {% endif %}
 {% endfor %}
 <hr />
 

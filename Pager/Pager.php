@@ -133,7 +133,7 @@ class Pager
      */
     protected function getTitleFirstPage()
     {
-        return $this->_translator->trans('first item');
+        return $this->_translator->trans('first');
     }
 
     /**
@@ -141,7 +141,7 @@ class Pager
      */
     protected function getTitlePreviousPage()
     {
-        return $this->_translator->trans('previous item');
+        return $this->_translator->trans('previous');
     }
 
     /**
@@ -149,7 +149,7 @@ class Pager
      */
     protected function getTitleNextPage()
     {
-        return $this->_translator->trans('next item');
+        return $this->_translator->trans('next');
     }
 
     /**
@@ -157,7 +157,7 @@ class Pager
      */
     protected function getTitleLastPage()
     {
-        return $this->_translator->trans('last item');
+        return $this->_translator->trans('last');
     }
 
 }
