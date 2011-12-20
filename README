@@ -14,6 +14,14 @@ Features
 
  * Twig template support (classic and twitter boostrap template)
  * Easy to customize and extend 
+
+Installation
+------------
+Add the namespaces to your autoloader in the app/autoload.php :
+'Rebolon'          => __DIR__.'/../src',
+
+Add PaginatorBundle to your application kernel in the app/AppKernel.php :
+new Rebolon\PagerBundle\RebolonPagerBundle(),
  
 Sample
 ------
