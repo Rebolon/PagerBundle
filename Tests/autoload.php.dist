@@ -1,0 +1,15 @@
+<?php
+
+require_once $_SERVER['SYMFONY_SRC'] . '/Symfony/Component/ClassLoader/UniversalClassLoader.php';
+
+use Symfony\Component\ClassLoader\UniversalClassLoader;
+$loader = new UniversalClassLoader();
+$loader->registerNamespace('Symfony', array($_SERVER['SYMFONY_SRC'], $_SERVER['SYMFONY_BUNDLE']));
+$loader->registerNamespace('Rebolon', array($_SERVER['SYMFONY_SRC'], $_SERVER['SYMFONY_BUNDLE']));
+$loader->registerNamespace('Monolog', $_SERVER['SYMFONY_VENDORS'] . '/monolog/src'); // only to be compatible with the config.yml loaded by config_dev and then config_test
+/* * /
+$loader->registerNamespace('Sensio', $_SERVER['SYMFONY_BUNDLE']); // only to be compatible with the config.yml loaded by config_dev and then config_test
+$loader->registerNamespace('JMS', $_SERVER['SYMFONY_BUNDLE']); // only to be compatible with the config.yml loaded by config_dev and then config_test
+$loader->registerNamespace('Highlight', $_SERVER['SYMFONY_BUNDLE']); // only to be compatible with the config.yml loaded by config_dev and then config_test
+/* */
+$loader->register();
