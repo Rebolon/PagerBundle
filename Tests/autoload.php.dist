@@ -1,15 +1,47 @@
 <?php
-
+/*
 require_once $_SERVER['SYMFONY_SRC'] . '/Symfony/Component/ClassLoader/UniversalClassLoader.php';
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
 $loader = new UniversalClassLoader();
 $loader->registerNamespace('Symfony', array($_SERVER['SYMFONY_SRC'], $_SERVER['SYMFONY_BUNDLE']));
-$loader->registerNamespace('Rebolon', array($_SERVER['SYMFONY_SRC'], $_SERVER['SYMFONY_BUNDLE']));
+$loader->registerNamespace('Rebolon', $_SERVER['SYMFONY_BUNDLE']);
 $loader->registerNamespace('Monolog', $_SERVER['SYMFONY_VENDORS'] . '/monolog/src'); // only to be compatible with the config.yml loaded by config_dev and then config_test
 /* * /
 $loader->registerNamespace('Sensio', $_SERVER['SYMFONY_BUNDLE']); // only to be compatible with the config.yml loaded by config_dev and then config_test
 $loader->registerNamespace('JMS', $_SERVER['SYMFONY_BUNDLE']); // only to be compatible with the config.yml loaded by config_dev and then config_test
 $loader->registerNamespace('Highlight', $_SERVER['SYMFONY_BUNDLE']); // only to be compatible with the config.yml loaded by config_dev and then config_test
-/* */
+/* * /
 $loader->register();
+*/
+// try to reuse lib defined in a current symfony2 project
+$autoload = __DIR__ . '/../../../../../app/bootstrap.php.cache';
+if (is_file($autoload)) {
+    include $autoload;
+} else {
+    $vendorDir = __DIR__ . '/../../vendor';
+    require_once $vendorDir . '/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php';
+
+    $loader = new Symfony\Component\ClassLoader\UniversalClassLoader();
+    $loader->registerNamespaces(array(
+        'Symfony' => array($vendorDir . '/symfony/src'),
+        'Rebolon' => array($vendorDir . '/bundles'),
+        'Monolog' => array($vendorDir . '/monolog/src'),
+    ));
+    $loader->registerPrefixes(array(
+        'Twig_' => $vendorDir . '/twig/lib',
+    ));
+    $loader->register();
+
+    spl_autoload_register(function($class) {
+        if (0 === strpos($class, 'Rebolon\\PagerBundle\\')) {
+            $path = __DIR__ . '/../' . implode('/', array_slice(explode('\\', $class), 2)) . '.php';
+
+            if (!stream_resolve_include_path($path)) {
+                return false;
+            }
+            require_once $path;
+            return true;
+        }
+    });
+}
