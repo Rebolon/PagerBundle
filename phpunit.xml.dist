@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <phpunit bootstrap="./Tests/bootstrap.php" colors="true">
 
-    <php>
+    <!-- <php>
         <server name="SYMFONY_VENDORS" value="pathToSymfony/vendor" />
         <server name="SYMFONY_SRC" value="pathToSymfony/vendor/symfony/src" />
         <server name="SYMFONY_BUNDLE" value="pathToSymfony/vendor/bundles" />
         <server name="KERNEL_DIR" value="pathToSymfony/app" />
-    </php>
+    </php> -->
     
     <testsuites>
         <testsuite name="Rebolon/PagerBundle test suite">
             <directory suffix="Test.php">./Tests</directory>
+            <exclude>./Tests/vendor</exclude>
+            <exclude>./Tests/cache</exclude>
+            <exclude>./Tests/logs</exclude>
             <exclude>./Tests/Units</exclude> <!-- Atoum folder -->
         </testsuite>
     </testsuites>
