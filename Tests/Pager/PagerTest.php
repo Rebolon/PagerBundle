@@ -59,20 +59,11 @@ class PagerTest
                 ->method('trans')
                 ->will($this->returnValue('first'));
         
-        $logger = $this->getMock('Monolog\Logger');
-        $logger->expects($this->any())
-                ->method('debug')
-                ->will($this->returnValue(null));
-        $logger->expects($this->any())
-                ->method('info')
-                ->will($this->returnValue(null));
-        
         $this->pager = new Pager;
         
         $this->serviceContainer = new Container;
         $this->serviceContainer->set('request', $request);
         $this->serviceContainer->set('translator', $translator);
-        $this->serviceContainer->set('logger', $logger);
 
         $this->pager->setSuffixName(self::$suffixName);
         $this->pager->setMaxPagerItem(self::$maxPagerItem);

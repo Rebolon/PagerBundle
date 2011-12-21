@@ -255,36 +255,29 @@ abstract class PagerAbstract
             throw new TotalPageNotSetException;
         if (is_null($this->_firstPage))
             throw new FirstPageNotSetException;
-$logger = $this->_container->get('logger');
-$logger->info('$totalPage: ' . $this->_totalPage);
-$logger->info('$itemPerPage: ' . $this->_itemPerPage);
-$logger->info('$maxPagerItem: ' . $this->_maxPagerItem);
+
         $maxItemPerPage =
             ($this->getMaxPagerItemParam($this->_totalPage) % 2) == 0 ?
             $this->getMaxPagerItemParam($this->_totalPage) :
             $this->getMaxPagerItemParam($this->_totalPage) + 1;
-$logger->info('$maxItemPerPage: ' . $maxItemPerPage);
+
         $nbItemOnSide = floor($maxItemPerPage / 2);
-$logger->info('$nbItemOnSide: ' . $nbItemOnSide);
+
         if ($this->_curPage <= $nbItemOnSide) {
             $startOffset = $this->_firstPage;
-$logger->info('$startOffset case 1');
         } elseif (($this->_lastPage - $this->_curPage) <= $nbItemOnSide) {
             $startOffset =
                 ($tmp = ($this->_lastPage - $maxItemPerPage + 1)) <= $this->_firstPage ?
                 $this->_firstPage : $tmp;
-$logger->info('$startOffset case 2');
         } else {
             $startOffset = $this->_curPage - $nbItemOnSide;
-$logger->info('$startOffset case 3');
         }
-$logger->info('$startOffset: ' . $startOffset);
+
         $endOffset = ($tmp = $startOffset + ($maxItemPerPage - 1)) > $this->_lastPage ?
             $this->_lastPage : $tmp;
-$logger->info('$endOffset: ' . $endOffset);
+
         $this->_itemList = array();
         for ($i = $startOffset; $i <= $endOffset; $i++) {
-$logger->info('$i: ' . $i);
             $this->_itemList[] = (int) $i;
         }
 

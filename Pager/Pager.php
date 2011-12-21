@@ -7,7 +7,6 @@ use \Rebolon\PagerBundle\Pager\Exception\NotContainerException;
 use \Symfony\Component\DependencyInjection\Container;
 use \Symfony\Component\HttpFoundation\Request;
 use \Symfony\Component\Translation\Translator;
-use \Symfony\Bridge\Monolog\Logger;
 
 /**
  * Pager optimized for Symfony2
@@ -37,11 +36,6 @@ class Pager
     protected $_translator;
 
     /**
-     * @var \Symfony\Bridge\Monolog\Logger 
-     */
-    protected $_logger;
-
-    /**
      * @see \Rebolon\PagerBundle\Pager\PagerConfigInterface::setContainer()
      */
     public function setContainer(\Symfony\Component\DependencyInjection\Container $container)
@@ -50,7 +44,6 @@ class Pager
 
         $this->_request = $container->get('request');
         $this->_translator = $container->get('translator');
-        $this->_logger = $container->get('logger');
 
         return $this;
     }
