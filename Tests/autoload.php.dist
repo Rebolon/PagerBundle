@@ -19,7 +19,7 @@ $autoload = __DIR__ . '/../../../../../app/bootstrap.php.cache';
 if (is_file($autoload)) {
     include $autoload;
 } else {
-    $vendorDir = __DIR__ . '/../../vendor';
+    $vendorDir = __DIR__ . '/../vendor';
     require_once $vendorDir . '/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php';
 
     $loader = new Symfony\Component\ClassLoader\UniversalClassLoader();
