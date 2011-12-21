@@ -1,0 +1,4 @@
+
+phpunit.xml
+/Tests/cache/
+/Tests/logs/
