@@ -16,6 +16,7 @@ $loader->register();
 */
 // try to reuse lib defined in a current symfony2 project
 $autoload = __DIR__ . '/../../../../../app/bootstrap.php.cache';
+$autoload = null;
 if (is_file($autoload)) {
     include $autoload;
 } else {
