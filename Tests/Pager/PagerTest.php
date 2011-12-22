@@ -86,8 +86,7 @@ class PagerTest
         $this->pager->init(150);
 
         $this->assertEquals(20, $this->pager->getItemPerPageParam(), 
-            'La valeur de getCurPageParam (' . $resultString 
-            . ') ne correspond pas à celle attendue (' . $expectedString . ')');
+            'La valeur de getCurPageParam ne correspond pas à celle attendue');
         $this->assertEquals(0, $this->pager->getOffset(), 
             'La valeur de getOffset ne correspond pas à celle attendue');
     }
