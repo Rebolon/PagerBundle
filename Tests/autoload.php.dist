@@ -14,6 +14,9 @@ $loader->registerNamespace('Highlight', $_SERVER['SYMFONY_BUNDLE']); // only to 
 /* * /
 $loader->register();
 */
+
+echo "> Initialize autoload\n";
+
 // try to reuse lib defined in a current symfony2 project
 $autoload = __DIR__ . '/../../../../../app/bootstrap.php.cache';
 $autoload = null;
@@ -21,16 +24,40 @@ if (is_file($autoload)) {
     include $autoload;
 } else {
     $vendorDir = __DIR__ . '/vendor';
+    
+    echo "\t vendor dir: $vendorDir\n";
     require_once $vendorDir . '/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php';
-
+    echo "\t UniversalClassLoader inluded\n";
     $loader = new Symfony\Component\ClassLoader\UniversalClassLoader();
     $loader->registerNamespaces(array(
         'Symfony' => array($vendorDir . '/symfony/src'),
 		'Rebolon' => array($vendorDir . '/../../../..'),
     ));
-	
+	echo "\t registering namespaces :\n";
+    echo "\t\t Symfony: " . realpath($vendorDir . '/symfony/src') . chr(10);
+    echo "\t\t Rebolon: " . realpath($vendorDir . '/../../../..') . chr(10);
     $loader->registerPrefixes(array(
         'Twig_' => $vendorDir . '/twig/lib',
     ));
+    echo "\t registering prefixes :\n";
+    echo "\t\t Twig: " . realpath($vendorDir . '/twig/lib') . chr(10);
     $loader->register();
+    echo "\t end laoder registering\n";
+    print_r(spl_autoload_functions());
+    echo chr(10);
+    
+    spl_autoload_register(function($class) {
+echo "\t > trying to load $class\n";
+    if (0 === strpos($class, 'Rebolon\\PagerBundle\\')) {
+        $path = __DIR__ . '/../' . implode('/', array_slice(explode('\\', $class), 2)) . '.php';
+echo "\t > try to load the pager... path: $path\n";
+        if (!stream_resolve_include_path($path)) {
+echo "\t failed to laod pager\n";
+            return false;
+        }
+        require_once $path;
+echo "\t pager loading seams ok\n";
+        return true;
+    }
+    });
 }
