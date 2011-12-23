@@ -131,7 +131,16 @@ class PagerTest
 /* *** PagerTplInterface *** */
     public function test_buildPager_1()
     {
-        $this->markTestIncomplete();
+        $this->pager->init(150);
+        $pagerList = $this->pager->buildPager();
+        $this->assertEquals(12, count($pagerList));
+        $this->assertEquals('<<', $pagerList[0]['label']);
+        $this->assertEquals('<', $pagerList[1]['label']);
+        for ($i=2;$i<9;$i++) {
+            $this->assertEquals(($i-1), $pagerList[$i]['label']);
+        }
+        $this->assertEquals('>', $pagerList[10]['label']);
+        $this->assertEquals('>>', $pagerList[11]['label']);
     }
     
     /**

@@ -27,6 +27,10 @@ if (is_file($autoload)) {
     include $autoload;
 } else {
     $vendorDir = __DIR__ . '/vendor';
+    if (!is_file($vendorDir . '/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php')) {
+        echo "Run Tests/vendor/vendors.php before phpunit\n";
+        exit;
+    }
     require_once $vendorDir . '/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php';
 
     $loader = new Symfony\Component\ClassLoader\UniversalClassLoader();
