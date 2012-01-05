@@ -15,7 +15,6 @@
         "twig/twig": "1.*"
     },
     "autoload": {
-        "psr-0": { "Rebolon\\PagerBundle": "" }
-    },
-    "target-dir": "Rebolon/PagerBundle"
+        "psr-0": { "Rebolon\\PagerBundle": "../.." }
+    }
 }
