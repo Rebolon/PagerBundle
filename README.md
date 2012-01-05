@@ -1,5 +1,6 @@
 README
 ======
+
 Here is a simple Pager for Symfony2
 
 [![Build Status](https://secure.travis-ci.org/Rebolon/PagerBundle.png)] 
@@ -21,10 +22,14 @@ Features
 Installation
 ------------
 Add the namespaces to your autoloader in the app/autoload.php :
-'Rebolon'          => __DIR__.'/../src',
+	``` php
+	'Rebolon'          => __DIR__.'/../src',
+	```
 
 Add PaginatorBundle to your application kernel in the app/AppKernel.php :
-new Rebolon\PagerBundle\RebolonPagerBundle(),
+	``` php
+	new Rebolon\PagerBundle\RebolonPagerBundle(),
+	```
  
 Sample
 ------
@@ -37,6 +42,7 @@ There is a sample in the default controller with route rebolon/pager/test
 
 You can also configure your own Pager for all your bundle, simply add this to 
 the services.xml of your bundle :
+	``` xml
     <service id="mybundle.pager" class="%rebolon_pager.pager.class%">
         <call method="setContainer">
              <argument type="service" id="service_container" />
@@ -51,6 +57,7 @@ the services.xml of your bundle :
              <argument>3</argument>
         </call>
     </service>
+	```
 	
 To get your offset/limit values, use the methods specified in PagerInterface :
  * first you need to do a count(*) on the list you want to display. Then give the value to the init method of the pager.
