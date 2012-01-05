@@ -22,11 +22,13 @@ Features
 Installation
 ------------
 Add the namespaces to your autoloader in the app/autoload.php :
+
 	``` php
 	'Rebolon'          => __DIR__.'/../src',
 	```
 
 Add PaginatorBundle to your application kernel in the app/AppKernel.php :
+
 	``` php
 	new Rebolon\PagerBundle\RebolonPagerBundle(),
 	```
@@ -37,11 +39,16 @@ Sample
 All you need is to know how many data the pager may manage (the totalItem).
 By default the pager has 5 items inside (1 to 5), and manage 15 items in the list that you want to display.
 So you can use the container to simply use the pager : 
-    $this->get('rebolon_pager.pager');
+
+	``` php
+	$this->get('rebolon_pager.pager');
+	```
+	
 There is a sample in the default controller with route rebolon/pager/test
 
 You can also configure your own Pager for all your bundle, simply add this to 
 the services.xml of your bundle :
+
 	``` xml
     <service id="mybundle.pager" class="%rebolon_pager.pager.class%">
         <call method="setContainer">
