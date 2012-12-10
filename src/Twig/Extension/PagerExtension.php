@@ -1,15 +1,17 @@
 <?php
 
-namespace Rebolon\PagerBundle\Twig\Extension;
+namespace Rebolon\Bundle\Pager\Twig\Extension;
 
-use \Symfony\Component\HttpKernel\KernelInterface;
-use \Symfony\Bundle\TwigBundle\Loader\FilesystemLoader;
+use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Bundle\TwigBundle\Loader\FilesystemLoader;
+use Symfony\Component\DependencyInjection\Container;
+use Rebolon\Component\Pager\PagerTplInterface;
 
 class PagerExtension extends \Twig_Extension
 {
     protected $container;
 
-    public function __construct(\Symfony\Component\DependencyInjection\Container $container)
+    public function __construct(Container $container)
     {
         $this->container = $container;
     }
@@ -25,9 +27,9 @@ class PagerExtension extends \Twig_Extension
     }
     
     /**
-     * @param \Rebolon\PagerBundle\Pager\PagerTplInterface $pager
+     * @param \Rebolon\Component\Pager\PagerTplInterface $pager
      */
-    public function getPager(\Rebolon\PagerBundle\Pager\PagerTplInterface $pager, $template = null)
+    public function getPager(PagerTplInterface $pager, $template = null)
     {
         /**
          * @todo check if tempalte exists

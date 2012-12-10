@@ -1,6 +1,6 @@
 <?php
 
-namespace Rebolon\PagerBundle\DependencyInjection;
+namespace Rebolon\Bundle\Pager\DependencyInjection;
 
 use \Symfony\Component\DependencyInjection\ContainerBuilder;
 use \Symfony\Component\Config\FileLocator;

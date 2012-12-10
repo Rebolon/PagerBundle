@@ -1,5 +1,5 @@
 {
-    "name": "Rebolon/PagerBundle",
+    "name": "Rebolon/pager-bundle",
     "description": "Bundle to use Pager with Symfony2",
     "keywords": ["page","paging","pager"],
     "type": "symfony-bundle",
@@ -12,9 +12,10 @@
     ],
     "require": {
         "symfony/framework-bundle": "2.*",
-        "twig/twig": "1.*"
+        "twig/twig": "1.*",
+        "Rebolon/pager-component": "master",
     },
     "autoload": {
-        "psr-0": { "Rebolon\\PagerBundle": "../.." }
+        "psr-0": { "Rebolon\\Bundle\\Pager": "./src" }
     }
 }

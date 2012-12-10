@@ -16,13 +16,13 @@
  * @TODO I should also use translator for the test. This way i could correctly test buildPager
  */
 
-namespace Rebolon\PagerBundle\Tests\Pager;
+namespace Rebolon\Bundle\Pager\Tests;
 
-use Rebolon\PagerBundle\Pager\Pager;
+use Rebolon\Bundle\Pager\Pager;
 use \PHPUnit_Framework_TestCase;
 use \AppKernel;
-use \Symfony\Component\DependencyInjection\Container;
-use \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
+use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 class PagerTest 
     extends \PHPUnit_Framework_TestCase

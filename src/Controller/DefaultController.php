@@ -1,6 +1,6 @@
 <?php
 
-namespace Rebolon\PagerBundle\Controller;
+namespace Rebolon\Bundle\Pager\Controller;
 
 use \Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use \Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -23,7 +23,7 @@ class DefaultController extends Controller
             $countFake, $pager->getOffset(), $pager->getItemPerPageParam()
             );
 
-        return $this->render('RebolonPagerBundle:Default:test.html.twig',
+        return $this->render('Rebolon\\Bundle\\Pager:Default:test.html.twig',
             array('data'=>$data, 'pager'=>$pager)
             );
     }
@@ -44,7 +44,7 @@ class DefaultController extends Controller
             $countFake
             );
 
-        return $this->render('RebolonPagerBundle:Default:testWithLargeList.html.twig',
+        return $this->render('Rebolon\\Bundle\\Pager:Default:testWithLargeList.html.twig',
             array('data'=>$data, 'pager'=>$pager)
             );
     }

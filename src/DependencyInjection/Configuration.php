@@ -1,6 +1,6 @@
 <?php
 
-namespace Rebolon\PagerBundle\DependencyInjection;
+namespace Rebolon\Bundle\Pager\DependencyInjection;
 
 use \Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use \Symfony\Component\Config\Definition\ConfigurationInterface;
