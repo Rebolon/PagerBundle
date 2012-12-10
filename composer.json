@@ -1,5 +1,5 @@
 {
-    "name": "Rebolon/pager-bundle",
+    "name": "rebolon/pager-bundle",
     "description": "Bundle to use Pager with Symfony2",
     "keywords": ["page","paging","pager"],
     "type": "symfony-bundle",
