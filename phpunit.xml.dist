@@ -10,21 +10,13 @@
     
     <testsuites>
         <testsuite name="Rebolon/PagerBundle test suite">
-            <directory suffix="Test.php">./Tests</directory>
-            <exclude>./vendor</exclude>
-            <exclude>./Tests/cache</exclude>
-            <exclude>./Tests/logs</exclude>
-            <exclude>./Tests/Units</exclude> <!-- Atoum folder -->
+            <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>./</directory>
-            <exclude>
-                <directory>./vendor</directory>
-                <directory>./Tests</directory>
-            </exclude>
+            <directory>./src</directory>
         </whitelist>
     </filter>
 </phpunit>
