@@ -13,7 +13,7 @@
     "require": {
         "symfony/framework-bundle": "2.*",
         "twig/twig": "1.*",
-        "Rebolon/pager-component": "master"
+        "rebolon/pager-component": "master"
     },
     "autoload": {
         "psr-0": { "Rebolon\\Bundle\\Pager": "./src" }
