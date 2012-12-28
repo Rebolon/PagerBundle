@@ -15,12 +15,6 @@
         "twig/twig": "1.*",
         "rebolon/pager-component": "dev-master"
     },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "http://github.com/Rebolon/PagerComponent"
-        }
-    ],
     "autoload": {
         "psr-0": { "Rebolon\\Bundle\\Pager": "./src" }
     }
