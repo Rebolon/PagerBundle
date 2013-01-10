@@ -17,6 +17,5 @@
     },
     "autoload": {
         "psr-0": { "Rebolon\\Bundle\\Pager": "./src" }
-    },
-    "minimum-stability": "dev"
+    }
 }
