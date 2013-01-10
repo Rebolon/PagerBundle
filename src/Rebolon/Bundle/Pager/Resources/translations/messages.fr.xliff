@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>first</source>
+                <target>premier</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>previous</source>
+                <target>précédent</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>next</source>
+                <target>prochain</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>last</source>
+                <target>dernier</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

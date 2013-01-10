@@ -1,0 +1,8 @@
+
+<div id="{{ pager.getSuffixName() }}" style="text-decoration:underline;">
+{% if pager.getTotalPage() > 1 %}
+{% for pagerKey, pagerItem in pager.buildPager() %}
+   {% if pager.isCurrentPage(pagerItem.label) %}<strong>{{pagerItem.label}}</strong>{% else %}{% if pagerItem.uri is defined %}<a href="{{pagerItem.uri}}" title="{{pagerItem.title}}">{{pagerItem.label}}</a>{%else%}{{pagerItem.label}}{%endif%}{%endif%} {% if not loop.last %}|{%endif%}
+{% endfor %}
+{% endif %}
+</div>

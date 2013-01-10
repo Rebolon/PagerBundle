@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="rebolon_pager.pager.class">Rebolon\Bundle\Pager\Pager</parameter>
+    </parameters>
+
+    <services>
+        <service id="rebolon_pager.pager" class="%rebolon_pager.pager.class%">
+            <call method="setContainer">
+                 <argument type="service" id="service_container" />
+            </call>
+            <call method="setSuffixName">
+                 <argument>%rebolon_pager.suffixname%</argument>
+            </call>
+            <call method="setItemPerPage">
+                 <argument>%rebolon_pager.itemperpage%</argument>
+            </call>
+            <call method="setMaxPagerItem">
+                 <argument>%rebolon_pager.maxpageritem%</argument>
+            </call>
+        </service>
+        
+        <service id="twig.extension.twigext" class="Rebolon\Bundle\Pager\Twig\Extension\PagerExtension">
+            <tag name="twig.extension" />
+            <argument type="service" id="service_container" />
+        </service>
+    </services>
+    
+</container>
