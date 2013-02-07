@@ -1,9 +1,0 @@
-<div id="{{ pager.getSuffixName() }}" class="pagination">
-{% if pager.getTotalPage() > 1 %}
-    <ul>
-{% for pagerKey, pagerItem in pager.buildPager() %}
-        <li class="{% if pager.isCurrentPage(pagerItem.label) %}active{%endif%}">{% if pagerItem.uri is defined %}<a href="{{pagerItem.uri}}" title="{{pagerItem.title}}">{{pagerItem.label}}</a>{%else%}{{pagerItem.label}}{%endif%}</li>
-{% endfor %}
-   </ul>
-{% endif %}
-</div>
